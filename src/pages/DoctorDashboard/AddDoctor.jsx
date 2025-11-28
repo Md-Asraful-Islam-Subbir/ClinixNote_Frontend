@@ -7,7 +7,7 @@ const AddDoctor = () => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/doctor/applications")
+    fetch("https://clinixnote-backend.onrender.com/api/doctor/applications")
       .then((res) => res.json())
       .then((data) => setApplications(data))
       .catch(() => alert("Failed to fetch doctor applications"));
@@ -17,7 +17,7 @@ const AddDoctor = () => {
     if (!password) return alert("Please enter a password.");
 
     try {
-      const res = await fetch(`http://localhost:4000/api/doctor/approve/${selectedDoctor._id}`, {
+      const res = await fetch(`https://clinixnote-backend.onrender.com/api/doctor/approve/${selectedDoctor._id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
@@ -38,7 +38,7 @@ const AddDoctor = () => {
   const handleDecline = async () => {
     console.log("Decline button clicked!"); 
     try {
-      const res = await fetch(`http://localhost:4000/api/doctor/decline/${selectedDoctor._id}`, {
+      const res = await fetch(`https://clinixnote-backend.onrender.com/api/doctor/decline/${selectedDoctor._id}`, {
         method: "POST",
       });
       const data = await res.json();

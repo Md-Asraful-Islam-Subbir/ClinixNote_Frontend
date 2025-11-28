@@ -38,7 +38,7 @@ const [showPassword, setShowPassword] = useState(false);
     }
 
     try {
-      const response = await fetch(`http://localhost:4000/api/auth${endpoint}`, {
+      const response = await fetch(`https://clinixnote-backend.onrender.com/api/auth${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, userType }),
@@ -80,7 +80,7 @@ else {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:4000/api/auth/forgot-password", {
+      const response = await fetch("https://clinixnote-backend.onrender.com/api/auth/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: formData.email }),

@@ -20,7 +20,7 @@ const PrescriptionReport = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/prescriptions/save-mysql",
+        "https://clinixnote-backend.onrender.com/api/prescriptions/save-mysql",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

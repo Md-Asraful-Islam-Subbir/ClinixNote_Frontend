@@ -9,7 +9,7 @@ const PaymentHistoryPage = () => {
   useEffect(() => {
     const fetchPayments = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/payment/history");
+        const res = await axios.get("https://clinixnote-backend.onrender.com/api/payment/history");
         setPayments(res.data);
       } catch (err) {
         console.error("Failed to fetch payments:", err);

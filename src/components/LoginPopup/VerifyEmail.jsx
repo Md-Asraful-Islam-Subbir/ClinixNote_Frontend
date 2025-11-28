@@ -9,7 +9,7 @@ const VerifyEmail = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/verify-email/${token}`);
+        const response = await fetch(`https://clinixnote-backend.onrender.com/api/verify-email/${token}`);
         const data = await response.json();
         if (response.ok) {
           setMessage("✅ Email verified successfully! You can now log in.");

@@ -22,7 +22,7 @@ const DoctorPatients = () => {
       if (!token) return console.error("No token found.");
 
       try {
-        const response = await fetch("http://localhost:4000/api/patients/my-patients", {
+        const response = await fetch("https://clinixnote-backend.onrender.com/api/patients/my-patients", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -47,7 +47,7 @@ const DoctorPatients = () => {
       if (!token) return;
 
       try {
-        const response = await fetch("http://localhost:4000/api/doctor/me", {
+        const response = await fetch("https://clinixnote-backend.onrender.com/api/doctor/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -88,7 +88,7 @@ const DoctorPatients = () => {
     try {
       const token = localStorage.getItem("token");
       const uploadResponse = await fetch(
-        `http://localhost:4000/api/patients/${patientId}/uploadImage`,
+        `https://clinixnote-backend.onrender.com/api/patients/${patientId}/uploadImage`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
@@ -104,7 +104,7 @@ const DoctorPatients = () => {
       if (result.match && result.patient_id) {
         try {
           const reportResponse = await fetch(
-            `http://localhost:4000/api/patientreports/${result.patient_id}`,
+            `https://clinixnote-backend.onrender.com/api/patientreports/${result.patient_id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }
@@ -137,7 +137,7 @@ const DoctorPatients = () => {
   const removePatient = async (patient) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:4000/api/patients`, {
+      const response = await fetch(`https://clinixnote-backend.onrender.com/api/patients`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -210,7 +210,7 @@ const DoctorPatients = () => {
                     src={
                       patient.image.startsWith("data:")
                         ? patient.image
-                        : `http://localhost:4000/uploads/${patient.image}`
+                        : `https://clinixnote-backend.onrender.com/uploads/${patient.image}`
                     }
                     alt="Patient"
                     className="patient-image"

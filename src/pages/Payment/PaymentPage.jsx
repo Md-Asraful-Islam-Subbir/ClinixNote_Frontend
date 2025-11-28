@@ -32,7 +32,7 @@ const PaymentPage = () => {
       setLoading(true);
 
       // Use relative URL if you use a proxy or same origin; change if necessary
-      const res = await axios.post("http://localhost:4000/api/payment/initiate", {
+      const res = await axios.post("https://clinixnote-backend.onrender.com/api/payment/initiate", {
         name,
         contact,
         doctor: doctorName,

@@ -12,7 +12,7 @@ const DashboardCards = () => {
     // Fetch total users
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/auth/total");
+        const res = await axios.get("https://clinixnote-backend.onrender.com/api/auth/total");
         setTotalUsers(res.data.total);
       } catch (error) {
         console.error("Failed to fetch users", error);
@@ -23,7 +23,7 @@ const DashboardCards = () => {
     const fetchDoctors = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/auth/total-doctors"
+          "https://clinixnote-backend.onrender.com/api/auth/total-doctors"
         );
         setTotalDoctors(res.data.total);
       } catch (error) {
@@ -35,7 +35,7 @@ const DashboardCards = () => {
     const fetchRevenue = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/payment/total-revenue"
+          "https://clinixnote-backend.onrender.com/api/payment/total-revenue"
         );
         setRevenue(res.data.total);
       } catch (error) {
@@ -47,7 +47,7 @@ const DashboardCards = () => {
     const fetchAppointments = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/appointments/total"
+          "https://clinixnote-backend.onrender.com/api/appointments/total"
         );
         setTotalAppointments(res.data.total);
       } catch (error) {

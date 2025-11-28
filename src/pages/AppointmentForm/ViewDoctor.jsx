@@ -9,7 +9,7 @@ const isLoggedIn = localStorage.getItem("token"); // or check context
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/doctor/doctorsforappointment");
+        const res = await fetch("https://clinixnote-backend.onrender.com/api/doctor/doctorsforappointment");
         if (!res.ok) throw new Error("Failed to fetch doctors");
         const data = await res.json();
         setDoctors(data);

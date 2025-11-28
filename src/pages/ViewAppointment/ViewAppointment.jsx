@@ -11,7 +11,7 @@ const UserAppointments = () => {
     const fetchUserAppointments = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:4000/api/appointments/user-appointments', {
+        const response = await axios.get('https://clinixnote-backend.onrender.com/api/appointments/user-appointments', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -29,7 +29,7 @@ const UserAppointments = () => {
 
   const handlePayment = async (appointment) => {
     try {
-      const response = await axios.post("http://localhost:4000/api/payment/initiate", {
+      const response = await axios.post("https://clinixnote-backend.onrender.com/api/payment/initiate", {
         name: appointment.name,
         contact: appointment.contact,
         doctor: appointment.doctor

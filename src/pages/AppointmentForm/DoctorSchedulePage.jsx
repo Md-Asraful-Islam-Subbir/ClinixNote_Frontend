@@ -9,7 +9,7 @@ const DoctorSchedulePage = () => {
   useEffect(() => {
     const fetchSchedule = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/doctor/${doctorId}/schedule`);
+        const res = await fetch(`https://clinixnote-backend.onrender.com/api/doctor/${doctorId}/schedule`);
         if (!res.ok) throw new Error("Failed to fetch schedule");
         const data = await res.json();
         setSchedules(data);

@@ -11,7 +11,7 @@ const DoctorAppointment = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:4000/api/appointments/my-appointments",
+          "https://clinixnote-backend.onrender.com/api/appointments/my-appointments",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setAppointments(response.data);
@@ -28,7 +28,7 @@ const DoctorAppointment = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        `http://localhost:4000/api/patients/add/${appt._id}`,
+        `https://clinixnote-backend.onrender.com/api/patients/add/${appt._id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

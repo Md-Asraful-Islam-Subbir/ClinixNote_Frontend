@@ -252,7 +252,7 @@ const saveToEHR = async () => {
     }
 
     // 🚀 Send multipart/form-data
-    const res = await fetch("http://localhost:4000/api/report", {
+    const res = await fetch("https://clinixnote-backend.onrender.com/api/report", {
       method: "POST",
       body: formData,
     });
@@ -289,7 +289,7 @@ const analyzeTranscription = async () => {
   if (!transcription.trim()) return;
   setIsAnalyzing(true);
   try {
-    const response = await fetch("http://localhost:4000/api/gpt", {
+    const response = await fetch("https://clinixnote-backend.onrender.com/api/gpt", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: transcription }),
@@ -343,7 +343,7 @@ const analyzeTranscription = async () => {
 <img
   src={
     patient.image
-      ? `${(typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) || "http://localhost:4000"}/uploads/${patient.image}`
+      ? `${(typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) || "https://clinixnote-backend.onrender.com"}/uploads/${patient.image}`
       : "/placeholder.jpg"
   }
   alt="Patient"

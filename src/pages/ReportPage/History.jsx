@@ -20,7 +20,7 @@ const navigate = useNavigate();
 
       try {
         const res = await fetch(
-          `http://localhost:4000/api/report/by-patient-id/${patient.id}`
+          `https://clinixnote-backend.onrender.com/api/report/by-patient-id/${patient.id}`
         );
         if (!res.ok) throw new Error("Failed to fetch report by patient ID");
 
@@ -49,7 +49,7 @@ const navigate = useNavigate();
 
 const handleDownload = async (fileUrl, filename) => {
   try {
-    const response = await fetch(`http://localhost:4000${fileUrl}`);
+    const response = await fetch(`https://clinixnote-backend.onrender.com${fileUrl}`);
     if (!response.ok) throw new Error("Download failed");
 
     const blob = await response.blob();
@@ -166,7 +166,7 @@ const handleDownload = async (fileUrl, filename) => {
                 </div>
                 <div className="document-actions">
                   <a
-                    href={`http://localhost:4000${doc.url}`}
+                    href={`https://clinixnote-backend.onrender.com${doc.url}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="view-link"

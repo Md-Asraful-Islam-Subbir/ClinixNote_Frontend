@@ -14,7 +14,7 @@ const Appointments = () => {
   const fetchAppointments = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:4000/api/appointments/appointments');
+      const response = await axios.get('https://clinixnote-backend.onrender.com/api/appointments/appointments');
       setAppointments(response.data);
     } catch (err) {
       setError('Failed to load appointments.');
@@ -26,7 +26,7 @@ const Appointments = () => {
 const handleDecline = async (appointment) => {
   try {
     await axios.delete(
-      `http://localhost:4000/api/appointments/appointments/${appointment._id}/decline`
+      `https://clinixnote-backend.onrender.com/api/appointments/appointments/${appointment._id}/decline`
     );
 
     setAppointments(prev =>
@@ -43,7 +43,7 @@ const handleDecline = async (appointment) => {
   const handleConfirm = async (appointment) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/appointments/appointments/${appointment._id}/confirm`,
+        `https://clinixnote-backend.onrender.com/api/appointments/appointments/${appointment._id}/confirm`,
         {
           contact: appointment.contact,
           doctorName: appointment.doctor

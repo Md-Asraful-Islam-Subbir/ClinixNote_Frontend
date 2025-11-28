@@ -22,7 +22,7 @@ useEffect(() => {
 
     try {
       const res = await fetch(
-        `http://localhost:4000/api/doctor/timeslots?doctorId=${selectedDoctor._id}&date=${formData.preferredDate}`
+        `https://clinixnote-backend.onrender.com/api/doctor/timeslots?doctorId=${selectedDoctor._id}&date=${formData.preferredDate}`
       );
       if (!res.ok) throw new Error("Failed to fetch time slots");
       const data = await res.json();
@@ -42,7 +42,7 @@ const [doctorSchedule, setDoctorSchedule] = useState([]);
     // Fetch doctors dynamically
     const fetchDoctors = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/doctor/doctorsforappointment");
+        const res = await fetch("https://clinixnote-backend.onrender.com/api/doctor/doctorsforappointment");
         if (!res.ok) throw new Error("Failed to fetch doctors");
         const data = await res.json();
         setDoctors(data);
@@ -70,7 +70,7 @@ const handleChange = async (e) => {
     const selectedDoctor = doctors.find((doc) => doc.name === value);
     if (selectedDoctor) {
       try {
-        const res = await fetch(`http://localhost:4000/api/doctor/${selectedDoctor._id}/schedule`);
+        const res = await fetch(`https://clinixnote-backend.onrender.com/api/doctor/${selectedDoctor._id}/schedule`);
         if (!res.ok) throw new Error("Failed to fetch doctor schedule");
         const data = await res.json();
         setDoctorSchedule(data);
@@ -103,7 +103,7 @@ const handleChange = async (e) => {
     }
 
     try {
-      const res = await fetch("http://localhost:4000/api/appointments/quick-appointments", {
+      const res = await fetch("https://clinixnote-backend.onrender.com/api/appointments/quick-appointments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

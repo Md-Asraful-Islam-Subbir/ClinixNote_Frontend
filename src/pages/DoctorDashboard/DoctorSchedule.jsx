@@ -57,7 +57,7 @@ const DoctorSchedule = () => {
 
     try {
      const token = localStorage.getItem('token');
-const response = await fetch('http://localhost:4000/api/doctor/schedule', {
+const response = await fetch('https://clinixnote-backend.onrender.com/api/doctor/schedule', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
