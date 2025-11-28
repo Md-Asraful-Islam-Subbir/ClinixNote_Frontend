@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./ReportPage.css";
-import History from "../../pages/ReportPage/History";
+import History from "../../pages/ReportPage/History"; 
 const ReportPage = () => {
   const location = useLocation();
   const { patient, doctor } = location.state || {};
@@ -211,53 +211,66 @@ const handleFileUpload = (event) => {
 };
 
 const saveToEHR = async () => {
-  const reportData = {
-    patientId: patient._id || patient.id,
-    patientName: `${patient.firstName} ${patient.lastName}`,
-    doctorName: doctor?.[0]?.name || "Unknown Doctor",
-    image: patient.image,
-    phone: patient.phone,
-    email: patient.email,
-    age: patient.age,
-    gender: patient.gender,
-    lastVisit: patient.lastVisit,
-    procedure: patient.procedure,
-    notes,
-    history,
-    examFindings,
-    transcription,
-    audioUrl,
-    prescriptions: savedPrescriptions,
-    documents: documents.map(doc => ({
-      name: doc.name,
-      type: doc.type,
-      size: doc.size,
-      date: doc.date,
-      url: doc.url,
-    })),
-    analysisResult: analysisResult ? {
-      input: transcription,
-      result: analysisResult.answer
-    } : null
-  };
-
   try {
+    const formData = new FormData();
+
+    // 🧩 Append text data
+    formData.append("patientId", patient.id);
+    formData.append("patientName", patient.name);
+    formData.append("doctorName", doctor.name);
+    formData.append("image", patient.image);
+    formData.append("contact", patient.contact);
+    formData.append("lastVisit", patient.lastVisit || "");
+    formData.append("procedure", patient.procedure || "");
+    formData.append("notes", notes);
+    formData.append("history", history);
+    formData.append("examFindings", examFindings);
+    formData.append("transcription", transcription);
+    formData.append("prescriptions", JSON.stringify(savedPrescriptions));
+
+    if (analysisResult) {
+      formData.append("analysisResult", JSON.stringify({
+        input: transcription,
+        result: analysisResult.answer
+      }));
+    }
+
+    // 🎤 Convert audio blob URL → File
+    if (audioUrl) {
+      const audioBlob = await fetch(audioUrl).then(res => res.blob());
+      const audioFile = new File([audioBlob], "recording.wav", { type: "audio/wav" });
+      formData.append("audio", audioFile);
+    }
+
+    // 📄 Convert document blob URLs → Files
+    for (const doc of documents) {
+      if (doc.url.startsWith("blob:")) {
+        const blob = await fetch(doc.url).then(res => res.blob());
+        const file = new File([blob], doc.name, { type: doc.mimetype || "application/octet-stream" });
+        formData.append("documents", file);
+      }
+    }
+
+    // 🚀 Send multipart/form-data
     const res = await fetch("http://localhost:4000/api/report", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(reportData)
+      body: formData,
     });
 
     if (res.ok) {
+      const data = await res.json();
+      console.log("✅ Report saved:", data);
       setEhrSaved(true);
       alert("✅ Report successfully saved to EHR!");
       setTimeout(() => setEhrSaved(false), 3000);
     } else {
-      throw new Error("Save failed");
+      const error = await res.text();
+      console.error("❌ Server error:", error);
+      alert("Failed to save report to EHR.");
     }
   } catch (err) {
-    console.error("Save to EHR failed", err);
-    alert("❌ Failed to save report to EHR.");
+    console.error("❌ Save failed:", err);
+    alert("Error saving report to EHR.");
   }
 };
 
@@ -335,8 +348,8 @@ const analyzeTranscription = async () => {
   }
   alt="Patient"
   className="patient-img"
-  onLoad={handleImageLoad}
-  onError={handleImageError}
+  //onLoad={handleImageLoad}
+  //onError={handleImageError}
 />
 
             {!imageLoaded && <div className="image-placeholder"></div>}
@@ -536,7 +549,7 @@ const analyzeTranscription = async () => {
               </div>
               
               <div className="signature-line">
-                <span>{doctor?.[0]?.name}</span>
+                <span>{patient.doctor}</span>
               </div>
 
               {savedPrescriptions.length > 0 && (
@@ -570,7 +583,7 @@ const analyzeTranscription = async () => {
                           ))}
                         </div>
                         <div className="prescription-footer">
-                          Prescribed by: {prescription.doctor}
+                          Prescribed by: {patient.doctor}
                         </div>
                       </div>
                     ))}
@@ -581,7 +594,7 @@ const analyzeTranscription = async () => {
           )}
 
           {activeTab === "history" && (
-  <History  patient={patient}  history={history} setHistory={setHistory} />
+  <History  patient={patient}  history={history} setHistory={setHistory}  />
 )}
 
           {activeTab === "exam" && (

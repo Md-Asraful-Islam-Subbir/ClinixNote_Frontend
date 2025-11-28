@@ -195,3 +195,32 @@
   border-top: 1px dashed #cbd5e0;
   margin-top: 1rem;
 }
+.exam-findings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exam-finding-item {
+  background: #f9f9ff;
+  border-left: 4px solid #4b8ef3;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+}
+.prescription-list {
+  list-style: none;
+  padding: 0;
+}
+
+.prescription-item {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.prescription-item p {
+  margin: 4px 0;
+}

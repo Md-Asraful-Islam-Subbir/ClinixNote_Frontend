@@ -1,6 +1,7 @@
 import React from 'react'
 import './PhysicianTalk.css'
 import {assets} from '../../assets/assets'
+import { Link } from "react-router-dom";
 const PhysicialTalk = () => {
   return (
     <div className="page-container">
@@ -83,6 +84,10 @@ const PhysicialTalk = () => {
                 className="testimonial-image"
               />
             </div>
+            <Link to="/view-doctor" className="view-doctor-btn">
+
+      View Doctor
+    </Link>
           </div>
         </div>
     </div>

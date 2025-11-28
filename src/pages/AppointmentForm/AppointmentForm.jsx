@@ -63,7 +63,7 @@ const [doctorSchedule, setDoctorSchedule] = useState([]);
 const handleChange = async (e) => {
   const { name, value, type, checked } = e.target;
 
-  // 👉 If doctor changes, fetch the schedule
+  // If doctor changes, fetch the schedule
   if (name === "doctor") {
     setFormData({ ...formData, [name]: value });
 
@@ -113,7 +113,7 @@ const handleChange = async (e) => {
         throw new Error("Failed to send appointment");
       }
 
-      alert("Appointment request sent! We'll call or email you to confirm.");
+      alert("Appointment request sent and pay your bill as soon as possible. We'll call or email you to confirm.");
     } catch (error) {
       console.error(error);
       alert("Something went wrong while booking.");
@@ -142,20 +142,24 @@ const handleChange = async (e) => {
     <div className="appointment-container">
       <div className="appointment-header">
         <h2>Quick Doctor Appointment</h2>
-        <p>Book with minimum info — we'll reach out to you.</p>
+        <p>Book with *patient minimum info — we'll reach out to you.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="appointment-form">
         <div className="form-group">
-          <label htmlFor="name">Full Name</label>
+          <label htmlFor="name">Patient Name</label>
           <input
-            type="text"
-            name="name"
-            placeholder="Your name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+  type="text"
+  name="name"
+  placeholder="Patient name"
+  value={formData.name}
+  onChange={handleChange}
+  onBlur={(e) =>
+    setFormData({ ...formData, name: e.target.value.toUpperCase() })
+  }
+  required
+/>
+
         </div>
 
         <div className="form-group">

@@ -4,6 +4,7 @@ import "./ViewDoctor.css";
 
 const ViewDoctor = () => {
   const [doctors, setDoctors] = useState([]);
+const isLoggedIn = localStorage.getItem("token"); // or check context
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -36,9 +37,17 @@ const ViewDoctor = () => {
             <p className="email">{doc.email}</p>
 
             <div className="doctor-actions">
-              <Link to="/appointment-form">
-                <button>Book Appointment</button>
-              </Link>
+               {isLoggedIn ? (
+    <Link to="/appointment-form">
+      <button>Book Appointment</button>
+    </Link>
+  ) : (
+    <button
+      onClick={() => alert("You must log in to book an appointment")}
+    >
+      Book Appointment
+    </button>
+  )}
 
               <Link to={`/doctor-schedule/${doc._id}`}>
                 <button>View Schedule </button>

@@ -82,6 +82,9 @@ const handleDecline = async (appointment) => {
               {appt.status}
             </span>
           </p>
+<p>
+  <strong>Payment status:</strong> {appt.payment_status}
+</p>
 
           {appt.status !== 'Confirmed' ? (
             <>

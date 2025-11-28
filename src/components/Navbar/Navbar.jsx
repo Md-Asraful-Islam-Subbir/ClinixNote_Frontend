@@ -162,7 +162,7 @@ const Navbar = ({ setShowLogin, showLogin }) => {
                 navigate(
                   userType?.toLowerCase() === "doctor"
                     ? "/contact"
-                    : "/appointment-form"
+                    : "/contact"
                 )
               }
             >

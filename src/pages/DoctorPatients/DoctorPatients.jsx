@@ -9,16 +9,17 @@ const DoctorPatients = () => {
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [capturing, setCapturing] = useState(false);
   const [recognitionResult, setRecognitionResult] = useState(null);
+  const [examFindings, setExamFindings] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const webcamRef = useRef(null);
   const navigate = useNavigate();
 
+  // Fetch all patients for logged-in doctor
   useEffect(() => {
     const fetchPatients = async () => {
       const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("No token found, redirecting to login.");
-        return;
-      }
+      if (!token) return console.error("No token found.");
 
       try {
         const response = await fetch("http://localhost:4000/api/patients/my-patients", {
@@ -39,6 +40,7 @@ const DoctorPatients = () => {
     fetchPatients();
   }, []);
 
+  // Fetch doctor profile
   useEffect(() => {
     const fetchDoctor = async () => {
       const token = localStorage.getItem("token");
@@ -63,8 +65,10 @@ const DoctorPatients = () => {
     fetchDoctor();
   }, []);
 
+  // Capture and upload patient image
   const captureImage = async (patientId) => {
-  if (webcamRef.current) {
+    if (!webcamRef.current) return;
+
     const imageSrc = webcamRef.current.getScreenshot();
     setCapturing(false);
 
@@ -73,11 +77,10 @@ const DoctorPatients = () => {
       return;
     }
 
-    // Convert base64 to a blob
+    // Convert base64 image to Blob
     const response = await fetch(imageSrc);
     const blob = await response.blob();
 
-    // Use FormData to send file
     const formData = new FormData();
     formData.append("image", blob, "capture.jpg");
     formData.append("patientId", patientId);
@@ -88,9 +91,7 @@ const DoctorPatients = () => {
         `http://localhost:4000/api/patients/${patientId}/uploadImage`,
         {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
           body: formData,
         }
       );
@@ -99,7 +100,30 @@ const DoctorPatients = () => {
       console.log("Recognition result:", result);
       setRecognitionResult(result);
 
-      // Update frontend image immediately
+      // 🧠 Fetch exam findings if a match is found
+      if (result.match && result.patient_id) {
+        try {
+          const reportResponse = await fetch(
+            `http://localhost:4000/api/patientreports/${result.patient_id}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+
+          if (reportResponse.ok) {
+            const reportData = await reportResponse.json();
+            console.log("Report data:", reportData);
+            setExamFindings(reportData.examFindings || []);
+          } else {
+            console.error("Failed to fetch exam findings");
+            setExamFindings([]);
+          }
+        } catch (error) {
+          console.error("Error fetching exam findings:", error);
+        }
+      }
+
+      // Update local patient image
       setPatients((prevPatients) =>
         prevPatients.map((p) =>
           p._id === patientId ? { ...p, image: imageSrc } : p
@@ -108,52 +132,56 @@ const DoctorPatients = () => {
     } catch (error) {
       console.error("Error processing face recognition:", error);
     }
-  }
-};
+  };
 
-console.log(patients,"images");
-const removePatient = async (patient) => {
-  try {
-    const token = localStorage.getItem("token");
+  const removePatient = async (patient) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://localhost:4000/api/patients`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: patient.name,
+          contact: patient.contact,
+          doctor: patient.doctor,
+          appointmentDate: patient.appointmentDate,
+          appointmentTime: patient.appointmentTime,
+        }),
+      });
 
-    const response = await fetch(`http://localhost:4000/api/patients`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        name: patient.name,
-        contact: patient.contact,
-        doctor: patient.doctor,
-        appointmentDate: patient.appointmentDate,
-        appointmentTime: patient.appointmentTime,
-      }),
-    });
-
-    if (response.ok) {
-      alert("Patient removed successfully");
-      setPatients((prevPatients) =>
-        prevPatients.filter((p) => p._id !== patient._id)
-      );
-    } else {
-      const errData = await response.json();
-      console.error("Failed to remove patient:", errData.message);
+      if (response.ok) {
+        alert("Patient removed successfully");
+        setPatients((prev) => prev.filter((p) => p._id !== patient._id));
+      } else {
+        const errData = await response.json();
+        console.error("Failed to remove patient:", errData.message);
+      }
+    } catch (error) {
+      console.error("Error removing patient:", error);
     }
-  } catch (error) {
-    console.error("Error removing patient:", error);
-  }
-};
-
+  };
 
   const closeRecognitionModal = () => {
     setRecognitionResult(null);
+    setExamFindings([]); // 🆕 clear findings
   };
 
   return (
     <div className="doctor-patients-container">
       <h2>Patient List</h2>
+<input
+  type="text"
+  placeholder="Search patient..."
+  className="search-box"
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
+
       <table className="patients-table">
+
         <thead>
           <tr>
             <th>Image</th>
@@ -165,14 +193,27 @@ const removePatient = async (patient) => {
           </tr>
         </thead>
         <tbody>
-          {patients.map((patient) => (
+          {patients
+           .filter((patient) => {
+    if (!searchTerm) return true;
+    return (
+      patient.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      patient.contact?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      patient.doctor?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  })
+          .map((patient) => (
             <tr key={patient._id}>
               <td>
                 {patient.image ? (
-                  <img 
-                    src={patient.image.startsWith('data:') ? `http://localhost:4000/uploads/${patient.image}` : `http://localhost:4000/uploads/${patient.image}`} 
-                    alt="Patient" 
-                    className="patient-image" 
+                  <img
+                    src={
+                      patient.image.startsWith("data:")
+                        ? patient.image
+                        : `http://localhost:4000/uploads/${patient.image}`
+                    }
+                    alt="Patient"
+                    className="patient-image"
                   />
                 ) : (
                   <button onClick={() => setCapturing(patient._id)}>Capture</button>
@@ -187,7 +228,11 @@ const removePatient = async (patient) => {
               <td>
                 <button onClick={() => setSelectedPatient(patient)}>View</button>
                 <button onClick={() => removePatient(patient)}>Remove</button>
-                <button onClick={() => navigate("/report", { state: { patient, doctor } })}>
+                <button
+                  onClick={() =>
+                    navigate("/report", { state: { patient, doctor } })
+                  }
+                >
                   Report
                 </button>
               </td>
@@ -196,6 +241,7 @@ const removePatient = async (patient) => {
         </tbody>
       </table>
 
+      {/* Webcam Capture Modal */}
       {capturing && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -216,6 +262,7 @@ const removePatient = async (patient) => {
         </div>
       )}
 
+      {/* Patient Info Modal */}
       {selectedPatient && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -226,10 +273,14 @@ const removePatient = async (patient) => {
             <p><strong>Appointment Date:</strong> {selectedPatient.appointmentDate}</p>
             <p><strong>Appointment Time:</strong> {selectedPatient.appointmentTime}</p>
             {selectedPatient.image && (
-              <img 
-                src={selectedPatient.image.startsWith('data:') ? selectedPatient.image : `data:image/jpeg;base64,${selectedPatient.image}`} 
-                alt="Patient" 
-                className="patient-modal-image" 
+              <img
+                src={
+                  selectedPatient.image.startsWith("data:")
+                    ? selectedPatient.image
+                    : `data:image/jpeg;base64,${selectedPatient.image}`
+                }
+                alt="Patient"
+                className="patient-modal-image"
               />
             )}
             <button className="close-button" onClick={() => setSelectedPatient(null)}>
@@ -239,27 +290,48 @@ const removePatient = async (patient) => {
         </div>
       )}
 
-    {recognitionResult && (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      <h3>Recognition Result</h3>
-      <p><strong>Match:</strong> {recognitionResult.match ? "Yes" : "No"}</p>
-      <p>
-        <strong>Confidence:</strong> 
-        {recognitionResult.score !== undefined && !isNaN(recognitionResult.score) 
-          ? (recognitionResult.score * 100).toFixed(2) + "%" 
-          : "N/A"}
-      </p>
-      {recognitionResult.match && (
-        <p><strong>Patient ID:</strong> {recognitionResult.patient_id}</p>
-      )}
-      <button className="close-button" onClick={closeRecognitionModal}>
-        Close
-      </button>
-    </div>
-  </div>
-)}
+      {/* Recognition Result Modal */}
+      {recognitionResult && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Recognition Result</h3>
+            <p><strong>Match:</strong> {recognitionResult.match ? "Yes" : "No"}</p>
+            <p>
+              <strong>Confidence:</strong>{" "}
+              {recognitionResult.score !== undefined && !isNaN(recognitionResult.score)
+                ? (recognitionResult.score * 100).toFixed(2) + "%"
+                : "N/A"}
+            </p>
 
+            {recognitionResult.match && (
+              <>
+                <p><strong>Patient ID:</strong> {recognitionResult.patient_id}</p>
+
+                {examFindings.length > 0 ? (
+                  <div>
+                    <h4>Exam Findings:</h4>
+                    <ul>
+                      {examFindings.map((finding, idx) => (
+                        <li key={idx}>
+                          {typeof finding === "string"
+                            ? finding
+                            : finding.content || JSON.stringify(finding)}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p>No exam findings found.</p>
+                )}
+              </>
+            )}
+
+            <button className="close-button" onClick={closeRecognitionModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

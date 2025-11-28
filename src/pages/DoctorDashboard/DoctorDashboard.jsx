@@ -80,9 +80,14 @@ const DoctorDashboard = () => {
           <li onClick={() => navigate("/doctor-schedule")}>
             <span>💬</span> Availability
           </li>
-          <li onClick={() => navigate("/doctor-reports")}>
-            <span>📊</span> Reports
-          </li>
+        <li onClick={() => {
+  localStorage.setItem("doctorName", doctor.name); // store doctor name
+  navigate("/payment", { state: { doctorName: doctor.name } });
+}}>
+  <span>📊</span> Payment
+</li>
+<li onClick={() => navigate("/payment-history")}><span>📜</span> Payment History</li>
+
           <li
   onClick={() => {
     localStorage.removeItem("token");

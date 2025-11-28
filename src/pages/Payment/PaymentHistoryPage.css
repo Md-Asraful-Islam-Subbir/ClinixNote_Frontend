@@ -1,0 +1,19 @@
+.payment-history-page {
+  padding: 20px;
+}
+
+.payment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.payment-table th,
+.payment-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.payment-table th {
+  background: #f0f0f0;
+}

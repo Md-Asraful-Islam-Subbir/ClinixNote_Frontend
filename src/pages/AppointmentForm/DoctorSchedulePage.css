@@ -1,20 +1,82 @@
 .doctor-schedule-page {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 25px;
+  background-color: #f9fafc;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-title {
+  text-align: center;
+  color: #0078d7;
+  margin-bottom: 25px;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+
+.no-schedule {
+  text-align: center;
+  color: #555;
+  font-style: italic;
 }
 
 .schedule-card {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 16px;
-  margin: 12px 0;
-  background: #fafafa;
+  background: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 6px solid #0078d7;
+}
+
+.schedule-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.schedule-details p {
+  margin: 0 0 10px;
+  color: #444;
 }
 
 .days-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin-top: 10px;
 }
 
 .day-item {
-  margin: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eef5ff;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.day-item:hover {
+  background: #dfeaff;
+}
+
+.day-name {
+  font-weight: 600;
+  color: #004b91;
+}
+
+.day-time {
+  font-weight: 500;
+  color: #222;
 }

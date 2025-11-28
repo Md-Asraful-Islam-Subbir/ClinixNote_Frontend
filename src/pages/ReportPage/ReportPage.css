@@ -404,13 +404,12 @@ audio {
 .signature-line {
   display: flex;
   justify-content: flex-end;
-  gap: 1.5rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px dashed var(--border-color);
-  font-style: italic;
-  color: var(--text-light);
-  font-size: 0.9rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1.5px dashed #ccc;
+  position: relative;
+  width: 100%;
 }
 
 .documents-grid {

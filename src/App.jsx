@@ -25,6 +25,12 @@ import ViewDoctor from './pages/AppointmentForm/ViewDoctor'
 import DoctorSchedule from './pages/DoctorDashboard/DoctorSchedule'
 import DoctorSchedulePage from './pages/AppointmentForm/DoctorSchedulePage'
 import DoctorAppointment from './pages/Appointments/DoctorAppointment'
+import PaymentPage from './pages/Payment/PaymentPage'
+import PaymentSuccess from './pages/Payment/PaymentSuccess'
+import PaymentFailed from './pages/Payment/PaymentFailed'
+import PaymentCancelled from './pages/Payment/PaymentCancelled'
+import PrescriptionReport from './pages/ReportPage/PrescriptionReport'
+import PaymentHistoryPage from './pages/Payment/PaymentHistoryPage'
 
 const App = () => {
   const [showLogin,setShowLogin]=useState(false)
@@ -53,7 +59,13 @@ const App = () => {
 <Route path="/verify-email/:token" element={<VerifyEmail/>} />
 <Route path="/doctors" element={<DoctorsPage/>} />
 <Route path="/add-doctor" element={<AddDoctor/>} />
+<Route path="/payment" element={<PaymentPage/>} />
+<Route path="/payment-success" element={<PaymentSuccess/>} />
+<Route path="/payment-failed" element={<PaymentFailed/>} />
+<Route path="/payment-cancelled" element={<PaymentCancelled/>} />
 <Route path="/doctor-schedule/:doctorId" element={<DoctorSchedulePage/>} />
+<Route path="/prescription" element={<PrescriptionReport/>} />
+<Route path="/payment-history" element={<PaymentHistoryPage/>} />
 </Routes>
 <Footer />
     </div>

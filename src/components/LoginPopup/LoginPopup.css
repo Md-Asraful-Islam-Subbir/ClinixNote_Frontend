@@ -1,4 +1,6 @@
-/* Overlay Background */
+/* ============================= */
+/* OVERLAY BACKGROUND */
+/* ============================= */
 .login-popup, .forgot-password-popup {
   position: fixed;
   inset: 0;
@@ -7,7 +9,7 @@
   backdrop-filter: blur(5px);
   display: grid;
   place-items: center;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', sans-serif;
   animation: fadeIn 0.3s ease;
 }
 
@@ -16,7 +18,9 @@
   to { opacity: 1; }
 }
 
-/* Main Container */
+/* ============================= */
+/* POPUP CONTAINER */
+/* ============================= */
 .login-popup-container,
 .forgot-password-container {
   width: 100%;
@@ -31,35 +35,56 @@
   position: relative;
 }
 
-/* Tabs - Modern Style */
+/* ============================= */
+/* TABS */
+/* ============================= */
 .login-sections {
   display: flex;
+  justify-content: space-between;
   background: #f8f9fa;
   border-radius: 12px;
   padding: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 .section-tab {
   flex: 1;
+  text-align: center;
   padding: 12px 0;
-  background: transparent;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  color: #6c757d;
-  font-size: 15px;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  color: #6b7280;
+  position: relative;
   transition: all 0.3s ease;
+  border-radius: 8px;
 }
 
 .section-tab.active {
+  color: #000;
   background: #fff;
-  color: #4f46e5;
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
 }
 
-/* Title Bar */
+.section-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #4f46e5;
+  border-radius: 1px;
+}
+
+.section-tab:hover {
+  background: #f9fafb;
+}
+
+/* ============================= */
+/* TITLE BAR */
+/* ============================= */
 .login-popup-title,
 .forgot-password-title {
   display: flex;
@@ -90,7 +115,9 @@
   opacity: 1;
 }
 
-/* Input Groups */
+/* ============================= */
+/* INPUT GROUPS */
+/* ============================= */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -100,10 +127,9 @@
 .input-group label {
   font-size: 14px;
   font-weight: 500;
-  color: rgb(31, 28, 28);
+  color: #1f1c1c;
 }
 
-/* Input Fields */
 .login-popup-inputs,
 .forgot-password-inputs {
   display: flex;
@@ -127,6 +153,8 @@
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
   outline: none;
 }
+
+/* Icon Inputs */
 .input-with-icon {
   position: relative;
   display: flex;
@@ -135,16 +163,16 @@
 
 .input-icon {
   position: absolute;
-  right: 40px;
-  margin-top: 40px;
+  right: 45px;
+  margin-top: 2.5rem;
   font-size: 18px;
-  color: black;
+  color: #000;
   pointer-events: none;
 }
 
 .input-with-icon input {
   width: 100%;
-  padding-left: 42px; /* space for mail icon */
+  padding-left: 42px; /* space for left icon if needed */
 }
 
 .password-field input {
@@ -153,17 +181,20 @@
 
 .toggle-password {
   position: absolute;
-  right: 40px;
-  margin-top: 40px;
-  font-size: 20px;
-  color: black;
+  right: 45px;
+  margin-top: 2.5rem;
   cursor: pointer;
+  font-size: 20px;
+  color: #000;
 }
 
-/* Button Styles */
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
 .login-popup-container button,
 .forgot-password-container button {
   width: 100%;
+  margin-top: 8px;
   background: #4f46e5;
   color: white;
   border: none;
@@ -172,122 +203,69 @@
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 5px rgba(79, 70, 229, 0.2);
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 16px;
-  position: relative;
-  overflow: hidden;
 }
 
-/* Button Hover State */
 .login-popup-container button:hover,
 .forgot-password-container button:hover {
   background: #4338ca;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.3);
 }
 
-/* Button Active State */
 .login-popup-container button:active,
 .forgot-password-container button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 3px rgba(79, 70, 229, 0.2);
 }
 
-/* Button Focus State */
-.login-popup-container button:focus,
-.forgot-password-container button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
-}
-
-/* Disabled Button State */
+/* Disabled Buttons */
 .login-popup-container button:disabled,
 .forgot-password-container button:disabled {
   background: #9ca3af;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
-/* Loading Spinner Animation */
+/* Loading Spinner */
 .loading-spinner {
   width: 18px;
   height: 18px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid rgba(255,255,255,0.3);
   border-radius: 50%;
   border-top-color: white;
-  animation: spin 1s ease-in-out infinite;
+  animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-/* Ripple Effect */
-.login-popup-container button::after,
-.forgot-password-container button::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.3) 1%, transparent 1%) center/15000%;
-  opacity: 0;
-  transition: opacity 0.5s, background-size 0.5s;
-}
-
-.login-popup-container button:active::after,
-.forgot-password-container button:active::after {
-  background-size: 100%;
-  opacity: 1;
-  transition: 0s;
-}
-
-/* Actions (links) */
-.login-popup-actions {
+/* ============================= */
+/* ACTION LINKS */
+/* ============================= */
+.login-popup-actions,
+.forgot-password-actions {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 12px;
   text-align: center;
 }
 
-.login-popup-actions p {
-  font-size: 14px;
-  color: #6c757d;
-  margin: 0;
-}
-
-.login-popup-actions span {
+.login-popup-actions span,
+.forgot-link,
+.back-to-login {
   color: #4f46e5;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: color 0.2s;
 }
 
-.login-popup-actions span:hover {
+.login-popup-actions span:hover,
+.forgot-link:hover,
+.back-to-login:hover {
   text-decoration: underline;
 }
 
-.forgot-link {
-  color: #4f46e5;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.forgot-link:hover {
-  text-decoration: underline;
-}
-
-/* Forgot Password Specific Styles */
 .forgot-instructions {
   color: #6c757d;
   font-size: 14px;
@@ -295,86 +273,55 @@
   text-align: center;
 }
 
-.back-to-login {
-  color: #4f46e5;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-  margin-top: 16px;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.back-to-login:hover {
-  text-decoration: underline;
-}
-
-/* Screen Reader Only Text */
+/* ============================= */
+/* SCREEN READER ONLY */
 .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
-  margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border-width: 0;
-}
-.login-sections {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid #e2e8f0;
-  margin-bottom: 16px;
 }
 
-.section-tab {
-  flex: 1;
-  text-align: center;
-  padding: 12px 0;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 15px;
-  color: #6b7280; /* Gray-600 */
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.section-tab.active {
-  color: black;
-}
-
-.section-tab.active::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #4f46e5;
-  border-radius: 1px;
-}
-
-.section-tab:hover {
-  background: #f9fafb;
-}
-
-/* Responsive */
+/* ============================= */
+/* RESPONSIVE STYLES */
+/* ============================= */
 @media (max-width: 480px) {
   .login-popup-container,
   .forgot-password-container {
     padding: 24px;
     margin: 16px;
     max-width: calc(100% - 32px);
+    margin-top: -18rem;
   }
-  
+
   .login-popup-title h2,
   .forgot-password-title h2 {
     font-size: 20px;
   }
-  
+
   .section-tab {
     font-size: 14px;
     padding: 10px 0;
+  }
+.input-icon {
+  font-size: 18px;
+  color: #000;
+  pointer-events: none;
+}
+  .login-popup-inputs input,
+  .forgot-password-inputs input {
+    padding: 12px 14px;
+  }
+
+  .toggle-password
+   {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 12px 16px;
   }
 }
