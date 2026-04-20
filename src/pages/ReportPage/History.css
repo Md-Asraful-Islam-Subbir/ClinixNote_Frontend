@@ -167,7 +167,6 @@
     justify-content: flex-end;
   }
 }
-/* Add this to your existing History.css file */
 
 .analysis-list {
   list-style: none;
@@ -223,4 +222,117 @@
 
 .prescription-item p {
   margin: 4px 0;
+}
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .history-container {
+    max-width: 900px;
+    padding: 1.5rem;
+  }
+
+  .history-title {
+    font-size: 1.6rem;
+  }
+
+  .history-info-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  .document-item {
+    padding: 0.9rem;
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .history-container {
+    max-width: 95%;
+    padding: 1.2rem;
+  }
+
+  .history-title {
+    font-size: 1.4rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .history-info-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .history-section {
+    padding: 1rem;
+  }
+
+  .document-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .document-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .analysis-item,
+  .prescription-item,
+  .exam-finding-item {
+    padding: 10px;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .history-container {
+    margin: 0.8rem;
+    padding: 1rem;
+  }
+
+  .history-title {
+    font-size: 1.2rem;
+  }
+
+  .history-loading,
+  .history-no-data {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+
+  .history-section h3 {
+    font-size: 1.1rem;
+  }
+
+  .document-item {
+    padding: 0.8rem;
+  }
+
+  .document-details p {
+    font-size: 13px;
+  }
+
+  .document-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .view-link,
+  .download-link {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+    padding: 0.6rem;
+  }
+
+  .analysis-item p,
+  .prescription-item p {
+    font-size: 13px;
+  }
+
+  .exam-finding-item {
+    font-size: 13px;
+    padding: 8px;
+  }
 }

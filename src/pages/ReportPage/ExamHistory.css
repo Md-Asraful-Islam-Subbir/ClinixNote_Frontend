@@ -18,3 +18,51 @@
   margin-top: 10px;
   color: #2a3f80;
 }
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .exam-history-section {
+    padding: 14px;
+  }
+
+  .history-entry,
+  .exam-finding-item {
+    padding: 8px 10px;
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .exam-history-section {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .history-entry,
+  .exam-finding-item {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .exam-findings h4 {
+    font-size: 16px;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .exam-history-section {
+    padding: 10px;
+    margin-top: 8px;
+  }
+
+  .history-entry,
+  .exam-finding-item {
+    padding: 8px;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .exam-findings h4 {
+    font-size: 15px;
+  }
+}

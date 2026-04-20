@@ -28,7 +28,7 @@ const Navbar = ({ setShowLogin, showLogin }) => {
   console.log("userType:", userType);
   return (
     <div className='navbar'>
-      <Link to='/'><img src={assets.logo} alt="Logo" className="logo" /></Link>
+      <Link to='/'><img src={assets.logo3} alt="Logo" className="logo" /></Link>
 
       {/* Hamburger menu toggle */}
       <div className={`navbar-toggle ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>

@@ -78,3 +78,90 @@
 .approve-section p {
   margin: 8px 0;
 }
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .add-doctor-container {
+    max-width: 700px;
+    padding: 25px;
+  }
+
+  .add-doctor-container h2 {
+    font-size: 22px;
+  }
+
+  .approve-section input {
+    width: 220px;
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .add-doctor-container {
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+  }
+
+  .add-doctor-container h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .applications-list li {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  .approve-section {
+    padding: 15px;
+  }
+
+  .approve-section input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .approve-section button {
+    width: 100%;
+  }
+
+  .approve-section button.decline {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .add-doctor-container {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .add-doctor-container h2 {
+    font-size: 18px;
+  }
+
+  .applications-list li {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .approve-section {
+    padding: 12px;
+  }
+
+  .approve-section input {
+    font-size: 14px;
+    padding: 7px;
+  }
+
+  .approve-section button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .approve-section p {
+    font-size: 14px;
+  }
+}

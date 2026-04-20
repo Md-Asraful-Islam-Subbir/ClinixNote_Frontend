@@ -189,3 +189,131 @@
   box-shadow: 0 0 6px rgba(13, 110, 253, 0.3);
   outline: none;
 }
+
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .doctor-patients-container {
+    width: 90%;
+  }
+
+  .search-box {
+    width: 250px;
+  }
+
+  .patients-table th,
+  .patients-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .modal-content {
+    max-width: 450px;
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .doctor-patients-container {
+    width: 95%;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  /* Table becomes scrollable */
+  .patients-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .patients-table th,
+  .patients-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .patient-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .view-button {
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
+  .webcam-container video {
+    max-width: 100%;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .doctor-patients-container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .search-box {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* Table scroll (important for mobile) */
+  .patients-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .patients-table th,
+  .patients-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .patient-image {
+    width: 35px;
+    height: 35px;
+  }
+
+  .view-button {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+
+  .modal-content {
+    padding: 15px;
+    width: 95%;
+  }
+
+  .patient-modal-image {
+    max-width: 80px;
+  }
+
+  .close-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .webcam-container {
+    padding: 15px;
+  }
+
+  .webcam-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .webcam-controls button {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+}

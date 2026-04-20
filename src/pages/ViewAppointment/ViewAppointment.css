@@ -57,3 +57,76 @@
 .pay-btn:hover {
   background-color: #084298;
 }
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .appointments-container {
+    padding: 30px;
+  }
+
+  .appointments-header {
+    font-size: 26px;
+  }
+
+  .appointment-card {
+    padding: 18px;
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .appointments-container {
+    padding: 25px;
+  }
+
+  .appointments-header {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .appointment-card {
+    padding: 16px;
+  }
+
+  .appointment-card p {
+    font-size: 14px;
+  }
+
+  .pay-btn {
+    font-size: 14px;
+    padding: 7px 14px;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .appointments-container {
+    padding: 15px;
+  }
+
+  .appointments-header {
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 8px;
+  }
+
+  .appointment-card {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .appointment-card p {
+    font-size: 13px;
+    margin: 6px 0;
+  }
+
+  .status {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+
+  .pay-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+}

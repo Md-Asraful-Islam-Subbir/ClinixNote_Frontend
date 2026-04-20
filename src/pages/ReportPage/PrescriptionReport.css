@@ -70,3 +70,78 @@
   margin-bottom: 20px;
   border: 1px solid #c3e6cb;
 }
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .prescription-report-container {
+    max-width: 700px;
+    padding: 18px;
+  }
+
+  .prescription-preview-card {
+    padding: 18px;
+  }
+
+  .prescription-text {
+    max-height: 260px;
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .prescription-report-container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .prescription-report-header {
+    font-size: 18px;
+  }
+
+  .prescription-preview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .prescription-preview-card {
+    padding: 15px;
+  }
+
+  .prescription-text {
+    max-height: 220px;
+    font-size: 14px;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .prescription-report-container {
+    padding: 12px;
+    margin: 0 10px;
+  }
+
+  .prescription-report-header {
+    font-size: 16px;
+    padding-bottom: 10px;
+  }
+
+  .prescription-preview-card {
+    padding: 12px;
+  }
+
+  .preview-section label {
+    font-size: 14px;
+  }
+
+  .prescription-text {
+    max-height: 180px;
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .error-message,
+  .success-message {
+    font-size: 13px;
+    padding: 8px;
+  }
+}

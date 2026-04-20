@@ -72,3 +72,78 @@
 .doctor-schedule button:hover {
   background-color: #0056b3;
 }
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .doctor-schedule {
+    max-width: 600px;
+    padding: 1.8rem;
+  }
+
+  .doctor-schedule h2 {
+    font-size: 22px;
+  }
+
+  .day-checkbox {
+    padding: 0.9rem;
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .doctor-schedule {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  .days-selection {
+    grid-template-columns: 1fr; /* stack days */
+  }
+
+  .doctor-schedule h2 {
+    font-size: 20px;
+  }
+
+  .doctor-schedule label {
+    font-size: 14px;
+  }
+
+  .doctor-schedule input {
+    font-size: 14px;
+  }
+
+  .time-range {
+    flex-direction: column;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .doctor-schedule {
+    padding: 1.2rem;
+    margin: 1.5rem auto;
+  }
+
+  .doctor-schedule h2 {
+    font-size: 18px;
+  }
+
+  .day-checkbox {
+    padding: 0.8rem;
+  }
+
+  .day-label {
+    font-size: 14px;
+  }
+
+  .doctor-schedule input[type="number"],
+  .doctor-schedule input[type="date"],
+  .doctor-schedule input[type="time"] {
+    padding: 0.35rem;
+    font-size: 13px;
+  }
+
+  .doctor-schedule button {
+    padding: 0.6rem;
+    font-size: 14px;
+  }
+}

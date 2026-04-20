@@ -15,7 +15,7 @@ const LoginPopup = ({ setShowLogin }) => {
   });
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const onChangeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -48,20 +48,20 @@ const [showPassword, setShowPassword] = useState(false);
 
       if (response.ok) {
         if (formState === "Login") {
-  localStorage.setItem("token", data.token);
-  localStorage.setItem("userType", userType);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("userType", userType);
 
-  if (userType === "Admin") {
-    window.location.href = "/admin-dashboard";
-  } else if (userType === "Doctor") {
-    window.location.href = "/doctor-dashboard"; // example
-  } else if (userType === "Patient") {
-    window.location.href = "/"; // example, maybe "/patient-dashboard"
-  } else {
-    window.location.href = "/";
-  }
-}
-else {
+          if (userType === "Admin") {
+            window.location.href = "/admin-dashboard";
+          } else if (userType === "Doctor") {
+            window.location.href = "/doctor-dashboard"; // example
+          } else if (userType === "Patient") {
+            window.location.href = "/"; // example, maybe "/patient-dashboard"
+          } else {
+            window.location.href = "/";
+          }
+        }
+        else {
           alert(data.message || (formState === "Apply" ? "Application submitted!" : "Account created!"));
           setShowLogin(false);
         }
@@ -135,7 +135,7 @@ else {
         <div className="input-group">
           <label htmlFor="password">Password</label>
           <input id="password" name="password" type={showPassword ? "text" : "password"} placeholder='••••••••' onChange={onChangeHandler} required />
-        <span
+          <span
             className="toggle-password"
             onClick={() => setShowPassword(!showPassword)}
           >
@@ -194,12 +194,12 @@ else {
             <div className="input-group">
               <label htmlFor="password">Password</label>
               <input id="password" name="password" type={showPassword ? "text" : "password"} placeholder='••••••••' onChange={onChangeHandler} required />
-            <span
-            className="toggle-password"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
-          </span>
+              <span
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
+              </span>
             </div>
           </>
         )}
@@ -237,7 +237,7 @@ else {
         <div className="input-group">
           <label htmlFor="password">Password</label>
           <input id="password" name="password" type={showPassword ? "text" : "password"} placeholder='••••••••' onChange={onChangeHandler} required />
-        <span
+          <span
             className="toggle-password"
             onClick={() => setShowPassword(!showPassword)}
           >

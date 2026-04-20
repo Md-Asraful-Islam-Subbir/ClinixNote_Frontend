@@ -39,3 +39,72 @@
   margin: 0;
   color: #555;
 }
+
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .doctors-page {
+    padding: 30px;
+  }
+
+  .doctors-page h1 {
+    font-size: 26px;
+  }
+
+  .doctor-card {
+    flex: 1 1 calc(50% - 20px); /* 2 cards per row */
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .doctors-page {
+    padding: 25px;
+  }
+
+  .doctors-page h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .doctor-actions {
+    justify-content: center;
+  }
+
+  .doctor-card {
+    flex: 1 1 100%; /* 1 per row */
+    max-width: 500px;
+  }
+
+  .doctor-card h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .doctor-card p {
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .doctors-page {
+    padding: 20px 15px;
+  }
+
+  .doctors-page h1 {
+    font-size: 20px;
+  }
+
+  .doctor-card {
+    padding: 15px;
+  }
+
+  .doctor-card h2 {
+    font-size: 16px;
+  }
+
+  .doctor-card p {
+    font-size: 13px;
+  }
+}

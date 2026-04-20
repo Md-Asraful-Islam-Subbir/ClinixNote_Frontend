@@ -127,10 +127,18 @@
 .red-text {
   color: #e74c3c;
 }
-/* ----------- Large Tablets ----------- */
-@media (max-width: 1024px) {
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
   .products-container {
     padding: 50px 6%;
+  }
+
+  .products-container h1 {
+    font-size: 36px;
+  }
+
+  .product-card {
+    flex: 1 1 calc(50% - 30px); /* 2 cards per row */
   }
 
   .product-title {
@@ -141,63 +149,67 @@
     font-size: 16px;
   }
 
+  .table-title {
+    font-size: 32px;
+  }
+
   .comparison-table th,
   .comparison-table td {
     font-size: 16px;
     padding: 14px;
   }
-
-  .table-title {
-    font-size: 32px;
-  }
 }
 
-/* ----------- Tablets & Medium Devices ----------- */
-@media (max-width: 768px) {
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
   .products-container {
     padding: 40px 5%;
   }
 
   .products-container1 {
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
   }
 
   .product-card {
-    width: 90%;
-    max-width: 450px;
+    flex: 1 1 100%; /* 1 card per row */
+    max-width: 500px;
   }
 
   .product-title {
     font-size: 26px;
+    text-align: center;
   }
 
   .product-description {
     font-size: 15px;
+    text-align: center;
+  }
+
+  .product-header {
+    justify-content: center;
   }
 
   .table-container {
     padding: 15px;
   }
 
+  .table-title {
+    font-size: 26px;
+  }
+
   .comparison-table {
     min-width: 100%;
-    font-size: 15px;
   }
 
   .comparison-table th,
   .comparison-table td {
     font-size: 14px;
-    padding: 10px 6px;
-  }
-
-  .table-title {
-    font-size: 26px;
+    padding: 10px;
   }
 }
 
-/* ----------- Small Phones ----------- */
-@media (max-width: 480px) {
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
   .products-container {
     padding: 30px 4%;
   }
@@ -218,6 +230,11 @@
     font-size: 14px;
   }
 
+  .product-icon {
+    width: 45px;
+    height: 45px;
+  }
+
   .table-container {
     padding: 10px;
     margin-top: 30px;
@@ -228,35 +245,17 @@
   }
 
   .comparison-table {
-    width: 100%;
-    min-width: auto;
-    border-radius: 6px;
+    font-size: 13px;
   }
 
   .comparison-table th,
   .comparison-table td {
     font-size: 13px;
-    padding: 8px 5px;
+    padding: 8px 6px;
   }
 
   .table-icon {
     width: 25px;
     height: 25px;
-  }
-}
-
-/* ----------- Very Small Screens ----------- */
-@media (max-width: 360px) {
-  .product-title {
-    font-size: 20px;
-  }
-
-  .product-description {
-    font-size: 13px;
-  }
-
-  .comparison-table th,
-  .comparison-table td {
-    font-size: 12px;
   }
 }

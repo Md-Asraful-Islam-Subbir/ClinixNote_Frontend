@@ -167,3 +167,136 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
+/* ================= Laptop (≤1200px) ================= */
+@media (max-width: 1200px) {
+  .sidebar1 {
+    width: 220px;
+    padding: 1.5rem 0.8rem;
+  }
+
+  .main-content {
+    padding: 2rem;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .appointment-card {
+    padding: 1.2rem;
+  }
+}
+
+/* ================= Tablet (≤992px) ================= */
+@media (max-width: 992px) {
+  .doctor-dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar1 {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+
+  .sidebar1-menu {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .sidebar1-menu li {
+    flex-direction: column;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .sidebar1-menu li span {
+    font-size: 18px;
+  }
+
+  .logout {
+    margin-top: 0;
+  }
+
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .user-profile {
+    align-self: flex-end;
+  }
+
+  .appointment-list {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 18px;
+  }
+}
+
+/* ================= Mobile (≤640px) ================= */
+@media (max-width: 640px) {
+  .sidebar1 {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .sidebar1-menu {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .sidebar1-menu li {
+    flex: 1 1 30%;
+    justify-content: center;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .doctor-name {
+    font-size: 14px;
+  }
+
+  .doctor-email,
+  .doctor-specialization {
+    font-size: 12px;
+  }
+
+  .user-profile img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .appointments h2 {
+    font-size: 18px;
+  }
+
+  .appointment-card {
+    padding: 1rem;
+  }
+
+  .appointment-info h3 {
+    font-size: 16px;
+  }
+
+  .appointment-info p {
+    font-size: 13px;
+  }
+
+  .view-details-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
